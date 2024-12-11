@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diário de Jogos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        #diario {
+            width: 60%;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        #diario h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #diario input {
+            width: 100%;
+            height: 40px;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        #diario button {
+            width: 100%;
+            height: 30px;
+            padding: 5px;
+            font-size: 14px;
+            background-color: #4c9eaf;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        #diario button:hover {
+            background-color: #4c9eaf;
+        }
+        #diario p {
+            margin-bottom: 20px;
+        }
+        #paragrafos {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        #paragrafos h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="diario">
+        <h2>Citar Parágrafos</h2>
+        <input id="entrada" type="text" placeholder="Digite algo aqui...">
+        <button id="adicionar">Adicionar Parágrafo</button>
+        <button id="verificar">Quantidade de Linhas</button>
+        <div id="linhas"></div>
+        <div id="paragrafos">
+            <h3>Parágrafos:</h3>
+            <ul id="lista-paragrafos"></ul>
+        </div>
+    </div>
+
+    <script>
+        let linhas = 0;
+        let paragrafos = [];
+        const entrada = document.getElementById('entrada');
+        const adicionar = document.getElementById('adicionar');
+        const verificar = document.getElementById('verificar');
+        const linhasDiv = document.getElementById('linhas');
+        const listaParagrafos = document.getElementById('lista-paragrafos');
+
+        adicionar.addEventListener('click', () => {
+            const texto = entrada.value.trim();
+            if (texto !== '') {
+                const p = document.createElement('p');
+                p.textContent = texto;
+                linhasDiv.appendChild(p);
+                linhas++;
+                paragrafos.push(texto);
+                entrada.value = '';
+                const li = document.createElement('li');
+                li.textContent = texto;
+                listaParagrafos.appendChild(li);
+            }
+        });
+
+        verificar.addEventListener('click', () => {
+            alert(`${linhas} linhas foram adicionadas`);
+        });
+    </script>
+</body>
+</html>
